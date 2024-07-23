@@ -1,8 +1,14 @@
-function Text() {
+function Text({ elementNameInForm, formState, setFormState }) {
   return (
     <div>
       <h6>Text</h6>
-      <input type="text" value="dummy text" />
+      <input
+        type="text"
+        onChange={(e) =>
+          setFormState({ ...formState, [elementNameInForm]: e.target.value })
+        }
+        value={formState[elementNameInForm]}
+      />
     </div>
   );
 }

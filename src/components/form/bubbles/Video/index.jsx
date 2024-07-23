@@ -1,8 +1,14 @@
-function Video() {
+function Video({ elementNameInForm, formState, setFormState }) {
   return (
     <div>
       <h6>Text</h6>
-      <input type="text" value="dummy video link" />
+      <input
+        type="text"
+        onChange={(e) =>
+          setFormState({ ...formState, [elementNameInForm]: e.target.value })
+        }
+        value={formState.elementNameInForm}
+      />
     </div>
   );
 }
