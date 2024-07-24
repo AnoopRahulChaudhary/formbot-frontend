@@ -1,7 +1,7 @@
-function Button({ text }) {
+function Button({ formId, elementName }) {
   return (
     <div>
-      <h6>Input Button</h6>
+      <h6>{elementName}</h6>
       <button>Some dummy text</button>
     </div>
   );

@@ -1,7 +1,7 @@
-function Number() {
+function Number({ formId, elementName }) {
   return (
     <div>
-      <h6>Input Number</h6>
+      <h6>{elementName}</h6>
       <div>Hint : User will input a number on his form</div>
     </div>
   );

@@ -1,7 +1,7 @@
-function Email() {
+function Email({ formId, elementName }) {
   return (
     <div>
-      <h6>Input Email</h6>
+      <h6>{elementName}</h6>
       <div>Hint : User will input a email on his form</div>
     </div>
   );

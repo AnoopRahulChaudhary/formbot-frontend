@@ -1,7 +1,7 @@
-function Text() {
+function Text({ formId, elementName }) {
   return (
     <div>
-      <h6>Input Text</h6>
+      <h6>{elementName}</h6>
       <div>Hint : User will input a text on his form</div>
     </div>
   );

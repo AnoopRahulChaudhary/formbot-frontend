@@ -1,7 +1,7 @@
-function Phone() {
+function Phone({ formId, elementName }) {
   return (
     <div>
-      <h6>Input Phone</h6>
+      <h6>{elementName}</h6>
       <div>Hint : User will input a phone on his form</div>
     </div>
   );

@@ -1,14 +1,8 @@
-function GIF(elementNameInForm, formState, setFormState) {
+function GIF({ formId, elementName }) {
   return (
     <div>
-      <h6>GIF</h6>
-      <input
-        type="text"
-        onChange={(e) =>
-          setFormState({ ...formState, [elementNameInForm]: e.target.value })
-        }
-        value={formState.elementNameInForm}
-      />
+      <h6>{elementName}</h6>
+      <input type="text" />
     </div>
   );
 }
