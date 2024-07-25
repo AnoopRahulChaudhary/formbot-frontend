@@ -1,6 +1,6 @@
-import { ADD_FLOW_ELEMENT } from "../actions/forms";
+import { ADD_FLOW_ELEMENT, UPDATE_FLOW_ELEMENT_VALUE } from "../actions/forms";
 import {
-  addFlowElementValue,
+  updateFlowElementValue,
   addNewFlowElement,
 } from "../util/formReducerUtil";
 
@@ -50,8 +50,8 @@ const reducer = (state = forms, action) => {
         [action.payload.formId]: formAfterFlowElementDelete,
       };
 
-    case "UPDATE_FLOW_ELEMENT_VALUE":
-      const formAfterFlowElementValueUpdate = addFlowElementValue(
+    case UPDATE_FLOW_ELEMENT_VALUE:
+      const formAfterFlowElementValueUpdate = updateFlowElementValue(
         state,
         action.payload
       );

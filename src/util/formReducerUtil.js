@@ -42,7 +42,7 @@ function deleteFlowElement(state, payload) {
   return updatedForm;
 }
 
-function addFlowElementValue(state, payload) {
+function updateFlowElementValue(state, payload) {
   const formId = payload.formId;
   const flowElementName = payload.flowElementName;
   const flowElementValue = payload.flowElementValue;
@@ -78,4 +78,4 @@ function addFlowElementValue(state, payload) {
   return updatedForm;
 }
 
-export { addNewFlowElement, deleteFlowElement, addFlowElementValue };
+export { addNewFlowElement, deleteFlowElement, updateFlowElementValue };

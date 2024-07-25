@@ -1,8 +1,14 @@
-function Video({ formId, elementName }) {
+function Video({ elementName, elementValue, handleFlowElementValueChange }) {
   return (
     <div>
       <h6>{elementName}</h6>
-      <input type="text" />
+      <input
+        type="text"
+        onChange={(e) =>
+          handleFlowElementValueChange(elementName, e.target.value)
+        }
+        value={elementValue}
+      />
     </div>
   );
 }

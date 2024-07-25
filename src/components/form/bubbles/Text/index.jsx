@@ -1,8 +1,14 @@
-function Text({ formId, elementName }) {
+function Text({ elementName, elementValue, handleFlowElementValueChange }) {
   return (
     <div>
       <h6>{elementName}</h6>
-      <input type="text" />
+      <input
+        type="text"
+        onChange={(e) =>
+          handleFlowElementValueChange(elementName, e.target.value)
+        }
+        value={elementValue}
+      />
     </div>
   );
 }

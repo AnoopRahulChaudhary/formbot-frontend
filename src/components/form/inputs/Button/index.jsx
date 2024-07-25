@@ -1,8 +1,14 @@
-function Button({ formId, elementName }) {
+function Button({ elementName, elementValue, handleFlowElementValueChange }) {
   return (
     <div>
       <h6>{elementName}</h6>
-      <button>Some dummy text</button>
+      <input
+        type="text"
+        onChange={(e) =>
+          handleFlowElementValueChange(elementName, e.target.value)
+        }
+        value={elementValue}
+      />
     </div>
   );
 }

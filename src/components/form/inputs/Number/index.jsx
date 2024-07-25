@@ -1,4 +1,4 @@
-function Number({ formId, elementName }) {
+function Number({ elementName }) {
   return (
     <div>
       <h6>{elementName}</h6>
