@@ -1,6 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import getFlowElementHtml from "../../../util/flowElement";
-import { addFlowElement, updateFlowElementValue } from "../../../actions/forms";
+import {
+  addFlowElement,
+  deleteFlowElement,
+  updateFlowElementValue,
+} from "../../../actions/forms";
 import FormFlowElement from "../../../data/formFlowElement";
 
 function FormFlow({ formId }) {
@@ -29,6 +33,14 @@ function FormFlow({ formId }) {
       flowElementValue,
     };
     dispatch(updateFlowElementValue(updatedValuePayload));
+  }
+
+  function handleFlowElementDeletion(flowElementName) {
+    const deletePayload = {
+      formId,
+      flowElementName,
+    };
+    dispatch(deleteFlowElement(deletePayload));
   }
 
   return (
@@ -69,7 +81,12 @@ function FormFlow({ formId }) {
       <br />
       {formFlow &&
         formFlow.map((element) =>
-          getFlowElementHtml(formId, element, handleFlowElementValueChange)
+          getFlowElementHtml(
+            formId,
+            element,
+            handleFlowElementValueChange,
+            handleFlowElementDeletion
+          )
         )}
     </div>
   );

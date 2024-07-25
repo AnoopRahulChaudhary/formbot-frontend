@@ -1,7 +1,12 @@
-import { ADD_FLOW_ELEMENT, UPDATE_FLOW_ELEMENT_VALUE } from "../actions/forms";
+import {
+  ADD_FLOW_ELEMENT,
+  DELETE_FLOW_ELEMENT,
+  UPDATE_FLOW_ELEMENT_VALUE,
+} from "../actions/forms";
 import {
   updateFlowElementValue,
   addNewFlowElement,
+  deleteFlowElement,
 } from "../util/formReducerUtil";
 
 //Todo : uncomment it later
@@ -40,8 +45,8 @@ const reducer = (state = forms, action) => {
         ...state,
         [action.payload.formId]: formAfterAddFlowElement,
       };
-    case "DELETE_FLOW_ELEMENT":
-      const formAfterFlowElementDelete = addNewFlowElement(
+    case DELETE_FLOW_ELEMENT:
+      const formAfterFlowElementDelete = deleteFlowElement(
         state,
         action.payload
       );

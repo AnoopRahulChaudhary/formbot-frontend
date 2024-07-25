@@ -10,7 +10,12 @@ import Phone from "../components/form/inputs/Phone";
 import Rating from "../components/form/inputs/Rating";
 import InputText from "../components/form/inputs/Text";
 
-function getFlowElementHtml(formId, flowElement, handleFlowElementValueChange) {
+function getFlowElementHtml(
+  formId,
+  flowElement,
+  handleFlowElementValueChange,
+  handleFlowElementDeletion
+) {
   console.debug(
     `called getFlowElementHtml with params : ${formId}, ${JSON.stringify(
       flowElement
@@ -24,6 +29,7 @@ function getFlowElementHtml(formId, flowElement, handleFlowElementValueChange) {
         elementName={flowElement.name}
         elementValue={flowElement.value}
         handleFlowElementValueChange={handleFlowElementValueChange}
+        handleFlowElementDeletion={handleFlowElementDeletion}
       />
     );
   }
@@ -35,6 +41,7 @@ function getFlowElementHtml(formId, flowElement, handleFlowElementValueChange) {
         elementName={flowElement.name}
         elementValue={flowElement.value}
         handleFlowElementValueChange={handleFlowElementValueChange}
+        handleFlowElementDeletion={handleFlowElementDeletion}
       />
     );
   }
@@ -46,6 +53,7 @@ function getFlowElementHtml(formId, flowElement, handleFlowElementValueChange) {
         elementName={flowElement.name}
         elementValue={flowElement.value}
         handleFlowElementValueChange={handleFlowElementValueChange}
+        handleFlowElementDeletion={handleFlowElementDeletion}
       />
     );
   }
@@ -57,32 +65,63 @@ function getFlowElementHtml(formId, flowElement, handleFlowElementValueChange) {
         elementName={flowElement.name}
         elementValue={flowElement.value}
         handleFlowElementValueChange={handleFlowElementValueChange}
+        handleFlowElementDeletion={handleFlowElementDeletion}
       />
     );
   }
 
   if (flowElement.type === "inputText") {
-    return <InputText elementName={flowElement.name} />;
+    return (
+      <InputText
+        elementName={flowElement.name}
+        handleFlowElementDeletion={handleFlowElementDeletion}
+      />
+    );
   }
 
   if (flowElement.type === "inputNumber") {
-    return <Number elementName={flowElement.name} />;
+    return (
+      <Number
+        elementName={flowElement.name}
+        handleFlowElementDeletion={handleFlowElementDeletion}
+      />
+    );
   }
 
   if (flowElement.type === "inputEmail") {
-    return <Email elementName={flowElement.name} />;
+    return (
+      <Email
+        elementName={flowElement.name}
+        handleFlowElementDeletion={handleFlowElementDeletion}
+      />
+    );
   }
 
   if (flowElement.type === "inputPhone") {
-    return <Phone elementName={flowElement.name} />;
+    return (
+      <Phone
+        elementName={flowElement.name}
+        handleFlowElementDeletion={handleFlowElementDeletion}
+      />
+    );
   }
 
   if (flowElement.type === "inputDate") {
-    return <Date elementName={flowElement.name} />;
+    return (
+      <Date
+        elementName={flowElement.name}
+        handleFlowElementDeletion={handleFlowElementDeletion}
+      />
+    );
   }
 
   if (flowElement.type === "inputRate") {
-    return <Rating elementName={flowElement.name} />;
+    return (
+      <Rating
+        elementName={flowElement.name}
+        handleFlowElementDeletion={handleFlowElementDeletion}
+      />
+    );
   }
 
   if (flowElement.type === "inputButton") {
@@ -91,6 +130,7 @@ function getFlowElementHtml(formId, flowElement, handleFlowElementValueChange) {
         elementName={flowElement.name}
         elementValue={flowElement.value}
         handleFlowElementValueChange={handleFlowElementValueChange}
+        handleFlowElementDeletion={handleFlowElementDeletion}
       />
     );
   }

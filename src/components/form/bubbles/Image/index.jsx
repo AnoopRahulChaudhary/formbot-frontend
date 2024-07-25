@@ -1,4 +1,9 @@
-function Image({ elementName, elementValue, handleFlowElementValueChange }) {
+function Image({
+  elementName,
+  elementValue,
+  handleFlowElementValueChange,
+  handleFlowElementDeletion,
+}) {
   return (
     <div>
       <h6>{elementName}</h6>
@@ -9,6 +14,9 @@ function Image({ elementName, elementValue, handleFlowElementValueChange }) {
         }
         value={elementValue}
       />
+      <button onClick={() => handleFlowElementDeletion(elementName)}>
+        Delete
+      </button>
     </div>
   );
 }

@@ -19,6 +19,48 @@ function addNewFlowElement(state, payload) {
   return updatedForm;
 }
 
+function getFlowElementCount(element) {
+  return Number(element.name.split(" ").pop());
+}
+
+function createNewElementName(oldName, newCount) {
+  const nameArr = oldName.split(" ");
+  let newName = "";
+  for (let i = 0; i < nameArr.length - 1; i++) {
+    newName = `${newName}${nameArr[i]} `;
+  }
+
+  newName = newName + newCount;
+  console.debug(`oldName ${oldName}, newCount ${newCount}, newName ${newName}`);
+  return newName;
+}
+
+function updateElementsNameForDeleteType(deletedFlowElement, flow) {
+  console.debug(`deleted flow element ${JSON.stringify(deletedFlowElement)}`);
+
+  const deletedElelemtType = deletedFlowElement.type;
+  const deletedElementCount = getFlowElementCount(deletedFlowElement);
+  const updatedFlow = [];
+  for (let flowElement of flow) {
+    if (flowElement.type === deletedElelemtType) {
+      const count = getFlowElementCount(flowElement);
+      if (count > deletedElementCount) {
+        const newElementName = createNewElementName(
+          flowElement.name,
+          count - 1
+        );
+        updatedFlow.push({ ...flowElement, name: newElementName });
+      } else {
+        updatedFlow.push(flowElement);
+      }
+    } else {
+      updatedFlow.push(flowElement);
+    }
+  }
+
+  return updatedFlow;
+}
+
 function deleteFlowElement(state, payload) {
   const formId = payload.formId;
   const flowElementName = payload.flowElementName;
@@ -29,13 +71,21 @@ function deleteFlowElement(state, payload) {
   console.debug(`state before deleting flow element : ${JSON.stringify(form)}`);
 
   const updatedFlow = [];
+  let deletedFlowElement;
   for (let flowElelment of form.flow) {
     if (flowElelment.name !== flowElementName) {
       updatedFlow.push(flowElelment);
+    } else {
+      deletedFlowElement = flowElelment;
     }
   }
 
-  const updatedForm = { ...form, flow: updatedFlow };
+  const finalUpdatedFlow = updateElementsNameForDeleteType(
+    deletedFlowElement,
+    updatedFlow
+  );
+
+  const updatedForm = { ...form, flow: finalUpdatedFlow };
   console.debug(
     `state after deleting flow element : ${JSON.stringify(updatedForm)}`
   );

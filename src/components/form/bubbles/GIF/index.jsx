@@ -1,4 +1,9 @@
-function GIF({ elementName, elementValue, handleFlowElementValueChange }) {
+function GIF({
+  elementName,
+  elementValue,
+  handleFlowElementValueChange,
+  handleFlowElementDeletion,
+}) {
   return (
     <div>
       <h6>{elementName}</h6>
@@ -9,6 +14,9 @@ function GIF({ elementName, elementValue, handleFlowElementValueChange }) {
         }
         value={elementValue}
       />
+      <button onClick={() => handleFlowElementDeletion(elementName)}>
+        Delete
+      </button>
     </div>
   );
 }

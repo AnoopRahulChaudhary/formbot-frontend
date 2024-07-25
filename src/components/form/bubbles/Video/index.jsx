@@ -1,4 +1,9 @@
-function Video({ elementName, elementValue, handleFlowElementValueChange }) {
+function Video({
+  elementName,
+  elementValue,
+  handleFlowElementValueChange,
+  handleFlowElementDeletion,
+}) {
   return (
     <div>
       <h6>{elementName}</h6>
@@ -9,6 +14,9 @@ function Video({ elementName, elementValue, handleFlowElementValueChange }) {
         }
         value={elementValue}
       />
+      <button onClick={() => handleFlowElementDeletion(elementName)}>
+        Delete
+      </button>
     </div>
   );
 }
