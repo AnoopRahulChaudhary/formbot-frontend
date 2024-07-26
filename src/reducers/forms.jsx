@@ -2,6 +2,7 @@ import {
   ADD_FLOW_ELEMENT,
   DELETE_FLOW_ELEMENT,
   UPDATE_FLOW_ELEMENT_VALUE,
+  UPDATE_FORM_THEME,
 } from "../actions/forms";
 import {
   updateFlowElementValue,
@@ -17,7 +18,7 @@ const forms = {
   1: {
     name: "",
     flow: [],
-    theme: "light",
+    theme: {name: "light", color: '' },
   },
 };
 
@@ -66,11 +67,11 @@ const reducer = (state = forms, action) => {
         [action.payload.formId]: formAfterFlowElementValueUpdate,
       };
 
-    case "UPDATE_FORM_THEME":
+    case UPDATE_FORM_THEME:
       return {
         ...state,
         [action.payload.formId]: {
-          ...state[action.payload.formName],
+          ...state[action.payload.formId],
           theme: action.payload.theme,
         },
       };
