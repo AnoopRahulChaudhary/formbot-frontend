@@ -18,7 +18,7 @@ const forms = {
   1: {
     name: "",
     flow: [],
-    theme: {name: "light", color: '' },
+    theme: { name: "light", color: "#ffffff" },
   },
 };
 
