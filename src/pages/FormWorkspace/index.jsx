@@ -4,6 +4,7 @@ import FormFlow from "./FormFlow";
 import FormTheme from "./FormTheme";
 import FormResponse from "./FormResponse";
 import FormName from "./FormName";
+import { addForm } from "../../api/form";
 
 function FormWorkspace({ formId }) {
   // Todo - delete it later as its tmeporary solution
@@ -11,9 +12,16 @@ function FormWorkspace({ formId }) {
   const formData = useSelector((state) => state.formsReducer[formId]);
 
   const [formView, setFormView] = useState("flow");
+  const [formSaveErrorMessage, setFormSaveErrorMessage] = useState("");
 
-  function handleSaveOnCLick() {
-    console.debug(`Form Data : ${JSON.stringify(formData)}`);
+  async function handleSaveOnCLick() {
+    console.debug(`Form Data to save : ${JSON.stringify(formData)}`);
+    const { statusCode, data, errorMessage } = await addForm(formData);
+    if (statusCode === 201) {
+      console.log(`form added successfully, ${data}`);
+    } else {
+      setFormSaveErrorMessage(errorMessage);
+    }
   }
 
   return (
@@ -25,6 +33,7 @@ function FormWorkspace({ formId }) {
         <button onClick={() => setFormView("response")}>Response</button>
         <button>Share</button>
         <button onClick={handleSaveOnCLick}>Save</button>
+        {formSaveErrorMessage && <div>formSaveErrorMessage</div>}
       </header>
       <main>
         {formView === "flow" && <FormFlow formId={formId} />}
