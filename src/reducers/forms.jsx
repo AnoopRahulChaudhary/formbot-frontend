@@ -19,6 +19,7 @@ const forms = {
     name: "",
     flow: [],
     theme: { name: "light", color: "#ffffff" },
+    refFolderId: ""
   },
 };
 

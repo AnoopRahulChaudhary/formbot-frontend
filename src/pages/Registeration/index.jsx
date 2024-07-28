@@ -2,9 +2,14 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { registerUser } from "../../api/user";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addCurrentUser } from "../../actions/currentUser.js";
+import { CURRENT_USER, TOKEN } from "../../constants/localStorageKey.js";
 
 function Registration() {
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   const [registrationDetails, setRegistrationDetails] = useState({
     username: "",
@@ -108,10 +113,11 @@ function Registration() {
     }
 
     localStorage.setItem(
-      "currentUser",
-      JSON.stringify({ name: data.username })
+      CURRENT_USER,
+      JSON.stringify({ username: data.username })
     );
-    localStorage.setItem("token", data.token);
+    dispatch(addCurrentUser(data.username));
+    localStorage.setItem(TOKEN, data.token);
     navigate("/formDashboard");
   }
 
