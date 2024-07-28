@@ -1,7 +1,9 @@
 import {
   ADD_FLOW_ELEMENT,
+  ADD_NEW_FORM,
   DELETE_FLOW_ELEMENT,
   UPDATE_FLOW_ELEMENT_VALUE,
+  UPDATE_FORM_NAME,
   UPDATE_FORM_THEME,
 } from "../actions/forms";
 import {
@@ -10,27 +12,26 @@ import {
   deleteFlowElement,
 } from "../util/formReducerUtil";
 
-//Todo : uncomment it later
-// const forms = {};
+const forms = {};
 
 // Todo - delete it later as its tmeporary solution
-const forms = {
-  1: {
-    name: "",
-    flow: [],
-    theme: { name: "light", color: "#ffffff" },
-    refFolderId: ""
-  },
-};
+// const forms = {
+//   1: {
+//     name: "",
+//     flow: [],
+//     theme: { name: "light", color: "#ffffff" },
+//     refFolderId: ""
+//   },
+// };
 
 const reducer = (state = forms, action) => {
   switch (action.type) {
-    case "ADD_NEW_FORM":
+    case ADD_NEW_FORM:
       return {
         ...state,
         [action.payload.formId]: action.payload.form,
       };
-    case "UPDATE_FORM_NAME":
+    case UPDATE_FORM_NAME:
       const formWithOldName = state[action.payload.formId];
       const newFormName = action.payload.newFormName;
       return {

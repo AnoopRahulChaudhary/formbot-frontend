@@ -1,8 +1,30 @@
+const ADD_NEW_FORM = "ADD_NEW_FORM";
 const ADD_FLOW_ELEMENT = "ADD_FLOW_ELEMENT";
 const UPDATE_FLOW_ELEMENT_VALUE = "UPDATE_FLOW_ELEMENT_VALUE";
 const DELETE_FLOW_ELEMENT = "DELETE_FLOW_ELEMENT";
 const UPDATE_FORM_THEME = "UPDATE_FORM_THEME";
 const UPDATE_FORM_NAME = "UPDATE_FORM_NAME";
+
+function addNewForm(formId, selectedFolderId) {
+  const form = {
+    name: "",
+    flow: [],
+    theme: { name: "light", color: "#ffffff" },
+  };
+  if (selectedFolderId) {
+    form.refFolderId = selectedFolderId;
+  }
+
+  const payload = {
+    formId,
+    form,
+  };
+
+  return {
+    type: ADD_NEW_FORM,
+    payload,
+  };
+}
 
 function updateFormName(formId, newFormName) {
   const payload = {
@@ -50,9 +72,11 @@ export {
   DELETE_FLOW_ELEMENT,
   UPDATE_FORM_THEME,
   UPDATE_FORM_NAME,
+  ADD_NEW_FORM,
   addFlowElement,
   updateFlowElementValue,
   deleteFlowElement,
   updateFormTheme,
   updateFormName,
+  addNewForm,
 };

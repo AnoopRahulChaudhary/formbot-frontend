@@ -6,9 +6,9 @@ import FormResponse from "./FormResponse";
 import FormName from "./FormName";
 import { addForm } from "../../api/form";
 
-function FormWorkspace({ formId }) {
-  // Todo - delete it later as its tmeporary solution
-  formId = 1;
+function FormWorkspace() {
+  const formId = window.location.pathname.split('/').pop();
+
   const formData = useSelector((state) => state.formsReducer[formId]);
 
   const [formView, setFormView] = useState("flow");
@@ -33,7 +33,7 @@ function FormWorkspace({ formId }) {
         <button onClick={() => setFormView("response")}>Response</button>
         <button>Share</button>
         <button onClick={handleSaveOnCLick}>Save</button>
-        {formSaveErrorMessage && <div>formSaveErrorMessage</div>}
+        {formSaveErrorMessage && <div>{formSaveErrorMessage}</div>}
       </header>
       <main>
         {formView === "flow" && <FormFlow formId={formId} />}

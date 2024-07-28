@@ -13,7 +13,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Registration />} />
         <Route path="/formDashboard" element={<FormDashboard />} />
-        <Route path="/formWorkspace" element={<FormWorkspace />} />
+        <Route path="/formWorkspace/:formKey" element={<FormWorkspace />} />
       </Routes>
     </BrowserRouter>
   );
