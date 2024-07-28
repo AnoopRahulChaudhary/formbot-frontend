@@ -14,7 +14,7 @@ function errorResponse(apiResponse) {
   return new Response(
     apiResponse.status,
     apiResponse.data,
-    apiResponse.data.message
+    apiResponse.data.errorMessage
   );
 }
 
