@@ -35,11 +35,31 @@ function FormDashboard() {
   }
 
   function getFormsInsideFolder(folderId) {
-    return [];
+    let formsInsideFolder = [];
+    Object.values(forms).forEach((form) => {
+      if (form.refFolderId === folderId) {
+        formsInsideFolder.push(form);
+      }
+    });
+
+    console.debug(
+      `forms available inside folderId ${folderId} is ${formsInsideFolder}`
+    );
+    return formsInsideFolder;
   }
 
   function getFormsOutsideAllFolder() {
-    return [];
+    let formsOutsideAllFolder = [];
+    Object.values(forms).forEach((form) => {
+      if (!form.refFolderId) {
+        formsOutsideAllFolder.push(form);
+      }
+    });
+
+    console.debug(
+      `forms available outside all folder is ${formsOutsideAllFolder}`
+    );
+    return formsOutsideAllFolder;
   }
 
   async function fetchForms() {
