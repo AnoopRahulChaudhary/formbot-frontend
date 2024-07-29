@@ -36,11 +36,12 @@ function FormDashboard() {
 
   function getFormsInsideFolder(folderId) {
     let formsInsideFolder = [];
-    Object.values(forms).forEach((form) => {
+    for (const key in forms) {
+      const form = forms[key];
       if (form.refFolderId === folderId) {
-        formsInsideFolder.push(form);
+        formsInsideFolder.push({ key, name: form.name });
       }
-    });
+    }
 
     console.debug(
       `forms available inside folderId ${folderId} is ${formsInsideFolder}`
@@ -50,11 +51,12 @@ function FormDashboard() {
 
   function getFormsOutsideAllFolder() {
     let formsOutsideAllFolder = [];
-    Object.values(forms).forEach((form) => {
+    for (const key in forms) {
+      const form = forms[key];
       if (!form.refFolderId) {
-        formsOutsideAllFolder.push(form);
+        formsOutsideAllFolder.push({ key, name: form.name });
       }
-    });
+    }
 
     console.debug(
       `forms available outside all folder is ${formsOutsideAllFolder}`
@@ -83,6 +85,7 @@ function FormDashboard() {
   }
 
   useEffect(() => {
+    console.log("getting forms and folders details");
     fetchForms();
     fetchFolders();
   }, []);

@@ -26,7 +26,7 @@ async function addForm(formDetails) {
       {
         ...formDetails,
       },
-      getAuthConfig
+      getAuthConfig()
     );
     console.debug(response);
     return successResponse(response);
@@ -40,4 +40,25 @@ async function addForm(formDetails) {
   }
 }
 
-export { addForm, getForms };
+async function updateForm(formDetails) {
+  try {
+    const response = await axios.post(
+      `${baseURL}/form/update/${formDetails._id}`,
+      {
+        ...formDetails,
+      },
+      getAuthConfig()
+    );
+    console.debug(response);
+    return successResponse(response);
+  } catch (error) {
+    console.error(error);
+    if (error.response) {
+      return errorResponse(error.response);
+    }
+
+    throw error;
+  }
+}
+
+export { addForm, getForms, updateForm };

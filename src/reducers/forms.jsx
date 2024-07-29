@@ -1,8 +1,10 @@
 import {
+  ADD_EXISTING_FORMS,
   ADD_FLOW_ELEMENT,
   ADD_NEW_FORM,
   DELETE_FLOW_ELEMENT,
   UPDATE_FLOW_ELEMENT_VALUE,
+  UPDATE_FORM_ID,
   UPDATE_FORM_NAME,
   UPDATE_FORM_THEME,
 } from "../actions/forms";
@@ -31,7 +33,7 @@ const reducer = (state = forms, action) => {
         ...state,
         [action.payload.formId]: action.payload.form,
       };
-    case "ADD_FORMS":
+    case ADD_EXISTING_FORMS:
       return {
         ...state,
         ...action.payload.forms,
@@ -80,6 +82,15 @@ const reducer = (state = forms, action) => {
         [action.payload.formId]: {
           ...state[action.payload.formId],
           theme: action.payload.theme,
+        },
+      };
+
+    case UPDATE_FORM_ID:
+      return {
+        ...state,
+        [action.payload.formKey]: {
+          ...state[action.payload.formKey],
+          _id: action.payload.formId,
         },
       };
 

@@ -5,6 +5,7 @@ const UPDATE_FLOW_ELEMENT_VALUE = "UPDATE_FLOW_ELEMENT_VALUE";
 const DELETE_FLOW_ELEMENT = "DELETE_FLOW_ELEMENT";
 const UPDATE_FORM_THEME = "UPDATE_FORM_THEME";
 const UPDATE_FORM_NAME = "UPDATE_FORM_NAME";
+const UPDATE_FORM_ID = "UPDATE_FORM_ID";
 
 function addNewForm(formId, selectedFolderId) {
   const form = {
@@ -31,6 +32,9 @@ function addExisitngForms(existingForms) {
   const forms = {};
   let formKey = 1;
   for (const form of existingForms) {
+    console.debug(
+      `Adding exsisting form ${JSON.stringify(form)} in central-state`
+    );
     forms[formKey] = form;
     formKey++;
   }
@@ -83,6 +87,16 @@ function updateFormTheme(payload) {
   };
 }
 
+function updateFormId(formKeyInState, formId) {
+  return {
+    type: UPDATE_FORM_ID,
+    payload: {
+      formKey: formKeyInState,
+      formId,
+    },
+  };
+}
+
 export {
   ADD_FLOW_ELEMENT,
   ADD_EXISTING_FORMS,
@@ -91,6 +105,7 @@ export {
   UPDATE_FORM_THEME,
   UPDATE_FORM_NAME,
   ADD_NEW_FORM,
+  UPDATE_FORM_ID,
   addFlowElement,
   updateFlowElementValue,
   deleteFlowElement,
@@ -98,4 +113,5 @@ export {
   updateFormName,
   addNewForm,
   addExisitngForms,
+  updateFormId,
 };
