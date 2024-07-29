@@ -1,4 +1,5 @@
 const ADD_NEW_FORM = "ADD_NEW_FORM";
+const ADD_EXISTING_FORMS = "ADD_EXISTING_FORMS";
 const ADD_FLOW_ELEMENT = "ADD_FLOW_ELEMENT";
 const UPDATE_FLOW_ELEMENT_VALUE = "UPDATE_FLOW_ELEMENT_VALUE";
 const DELETE_FLOW_ELEMENT = "DELETE_FLOW_ELEMENT";
@@ -23,6 +24,22 @@ function addNewForm(formId, selectedFolderId) {
   return {
     type: ADD_NEW_FORM,
     payload,
+  };
+}
+
+function addExisitngForms(existingForms) {
+  const forms = {};
+  let formKey = 1;
+  for (const form of existingForms) {
+    forms[formKey] = form;
+    formKey++;
+  }
+
+  return {
+    type: ADD_EXISTING_FORMS,
+    payload: {
+      forms,
+    },
   };
 }
 
@@ -68,6 +85,7 @@ function updateFormTheme(payload) {
 
 export {
   ADD_FLOW_ELEMENT,
+  ADD_EXISTING_FORMS,
   UPDATE_FLOW_ELEMENT_VALUE,
   DELETE_FLOW_ELEMENT,
   UPDATE_FORM_THEME,
@@ -79,4 +97,5 @@ export {
   updateFormTheme,
   updateFormName,
   addNewForm,
+  addExisitngForms,
 };

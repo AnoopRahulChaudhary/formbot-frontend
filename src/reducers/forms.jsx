@@ -31,6 +31,11 @@ const reducer = (state = forms, action) => {
         ...state,
         [action.payload.formId]: action.payload.form,
       };
+    case "ADD_FORMS":
+      return {
+        ...state,
+        ...action.payload.forms,
+      };
     case UPDATE_FORM_NAME:
       const formWithOldName = state[action.payload.formId];
       const newFormName = action.payload.newFormName;
