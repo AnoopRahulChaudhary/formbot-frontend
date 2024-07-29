@@ -19,4 +19,23 @@ async function getFolders() {
   }
 }
 
-export { getFolders };
+async function addFolder(name) {
+  try {
+    const response = await axios.post(
+      `${baseURL}/folder/add`,
+      { name },
+      getAuthConfig()
+    );
+    console.debug(response);
+    return successResponse(response);
+  } catch (error) {
+    console.error(error);
+    if (error.response) {
+      return errorResponse(error.response);
+    }
+
+    throw error;
+  }
+}
+
+export { getFolders, addFolder };

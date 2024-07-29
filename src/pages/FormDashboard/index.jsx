@@ -6,7 +6,7 @@ import Folder from "../../components/Folder";
 import FormChip from "../../components/form/FormChip";
 import { addExisitngForms, addNewForm } from "../../actions/forms";
 import { getForms } from "../../api/form";
-import { getFolders } from "../../api/folder";
+import { addFolder, getFolders } from "../../api/folder";
 
 function FormDashboard() {
   const forms = useSelector((state) => state.formsReducer);
@@ -14,6 +14,8 @@ function FormDashboard() {
   const [selectedFolderId, setSelectedFolderId] = useState("");
   const [formDataFetchError, setFormDataFetchError] = useState("");
   const [folderDataFetchError, setFolderDataFetchError] = useState("");
+  const [newFolderName, setNewFolderName] = useState("");
+  const [newFolderCreationError, setNewFolderCreationError] = useState("");
 
   const currentUserName = useSelector(
     (state) => state.currentUserReducer.username
@@ -44,7 +46,9 @@ function FormDashboard() {
     }
 
     console.debug(
-      `forms available inside folderId ${folderId} is ${formsInsideFolder}`
+      `forms available inside folderId ${folderId} is ${JSON.stringify(
+        formsInsideFolder
+      )}`
     );
     return formsInsideFolder;
   }
@@ -59,10 +63,29 @@ function FormDashboard() {
     }
 
     console.debug(
-      `forms available outside all folder is ${formsOutsideAllFolder}`
+      `forms available outside all folder is ${JSON.stringify(
+        formsOutsideAllFolder
+      )}`
     );
     return formsOutsideAllFolder;
   }
+
+  async function handleCreateNewFolder(event) {
+    event.preventDefault();
+
+    const { statusCode, data, errorMessage } = await addFolder(newFolderName);
+    if (Number(statusCode) !== 201) {
+      setNewFolderCreationError(errorMessage);
+      return;
+    }
+
+    setFolders((state) => [
+      ...state,
+      { id: data.folderId, name: newFolderName },
+    ]);
+  }
+
+  function handleCreateFolderOnClick() {}
 
   async function fetchForms() {
     const { statusCode, data, errorMessage } = await getForms();
@@ -101,13 +124,24 @@ function FormDashboard() {
       </nav>
 
       <div className="folder">
-        <button>Create a folder</button>
+        <form className="folder__create-new">
+          <label htmlFor="folder-name">Create New Folder</label>
+          <input
+            onChange={(e) => setNewFolderName(e.target.value)}
+            type="text"
+            name="newFolderName"
+            placeholder="Enter folder name"
+          />
+          <input onClick={handleCreateNewFolder} type="submit" value="Done" />
+          <input type="submit" value="Cancel" />
+        </form>
+        <button onClick={handleCreateFolderOnClick}>Create a folder</button>
         {folderDataFetchError && <div>{folderDataFetchError}</div>}
         {folders.map((folder) => (
           <Folder
-            folderId={folder.id}
+            folderId={folder._id}
             folderName={folder.name}
-            setSelectedFolderId={selectedFolderId}
+            setSelectedFolderId={setSelectedFolderId}
           />
         ))}
       </div>

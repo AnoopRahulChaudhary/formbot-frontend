@@ -16,16 +16,6 @@ import {
 
 const forms = {};
 
-// Todo - delete it later as its tmeporary solution
-// const forms = {
-//   1: {
-//     name: "",
-//     flow: [],
-//     theme: { name: "light", color: "#ffffff" },
-//     refFolderId: ""
-//   },
-// };
-
 const reducer = (state = forms, action) => {
   switch (action.type) {
     case ADD_NEW_FORM:
