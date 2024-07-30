@@ -61,4 +61,22 @@ async function updateForm(formDetails) {
   }
 }
 
-export { addForm, getForms, updateForm };
+async function getFormResponse(formId) {
+  try {
+    const response = await axios.get(
+      `${baseURL}/form/response/${formId}`,
+      getAuthConfig()
+    );
+    console.debug(response);
+    return successResponse(response);
+  } catch (error) {
+    console.error(error);
+    if (error.response) {
+      return errorResponse(error.response);
+    }
+
+    throw error;
+  }
+}
+
+export { addForm, getForms, updateForm, getFormResponse };

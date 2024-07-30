@@ -2,14 +2,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateFormTheme } from "../../../actions/forms";
 import FormThemeData from "../../../data/formTheme";
 
-function FormTheme({ formId }) {
-  const theme = useSelector((state) => state.formsReducer[formId].theme);
+function FormTheme({ formKey }) {
+  const theme = useSelector((state) => state.formsReducer[formKey].theme);
   const dispatch = useDispatch();
 
   function setThemeState(themeName, themeColor) {
     const updatedTheme = new FormThemeData(themeName, themeColor);
     const uploadThemePayload = {
-      formId,
+      formId: formKey,
       theme: updatedTheme,
     };
     dispatch(updateFormTheme(uploadThemePayload));

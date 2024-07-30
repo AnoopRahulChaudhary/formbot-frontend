@@ -61,9 +61,9 @@ function FormWorkspace() {
         {formSaveErrorMessage && <div>{formSaveErrorMessage}</div>}
       </header>
       <main>
-        {formView === "flow" && <FormFlow formId={formKey} />}
-        {formView === "theme" && <FormTheme formId={formKey} />}
-        {formView === "response" && <FormResponse formId={formKey} />}
+        {formView === "flow" && <FormFlow formKey={formKey} />}
+        {formView === "theme" && <FormTheme formKey={formKey} />}
+        {formView === "response" && <FormResponse formKey={formKey} />}
       </main>
     </div>
   );

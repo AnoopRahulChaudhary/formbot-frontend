@@ -7,8 +7,8 @@ import {
 } from "../../../actions/forms";
 import FormFlowElement from "../../../data/formFlowElement";
 
-function FormFlow({ formId }) {
-  const formFlow = useSelector((state) => state.formsReducer[formId].flow);
+function FormFlow({ formKey }) {
+  const formFlow = useSelector((state) => state.formsReducer[formKey].flow);
   const dispatch = useDispatch();
 
   function handleOnClick(type, tagName) {
@@ -20,7 +20,7 @@ function FormFlow({ formId }) {
     const flowElementName = `${tagName} ${++tagNameCount}`;
     const flowElement = new FormFlowElement(flowElementName, type);
     const flowElementPayload = {
-      formId,
+      formId: formKey,
       flowElement,
     };
     dispatch(addFlowElement(flowElementPayload));
@@ -28,7 +28,7 @@ function FormFlow({ formId }) {
 
   function handleFlowElementValueChange(flowElementName, flowElementValue) {
     const updatedValuePayload = {
-      formId,
+      formId: formKey,
       flowElementName,
       flowElementValue,
     };
@@ -37,7 +37,7 @@ function FormFlow({ formId }) {
 
   function handleFlowElementDeletion(flowElementName) {
     const deletePayload = {
-      formId,
+      formId: formKey,
       flowElementName,
     };
     dispatch(deleteFlowElement(deletePayload));
@@ -82,7 +82,7 @@ function FormFlow({ formId }) {
       {formFlow &&
         formFlow.map((element) =>
           getFlowElementHtml(
-            formId,
+            formKey,
             element,
             handleFlowElementValueChange,
             handleFlowElementDeletion
