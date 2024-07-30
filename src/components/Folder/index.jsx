@@ -1,6 +1,14 @@
-function Folder({ folderId, folderName, setSelectedFolderId }) {
+function Folder({ folderId, folderName, setSelectedFolderId, formIds }) {
+  function handleFolderDeleteOnClick(){
+    
+  }
   return (
-    <button onClick={() => setSelectedFolderId(folderId)}>{folderName}</button>
+    <div>
+      <button onClick={() => setSelectedFolderId(folderId)}>
+        {folderName}
+      </button>
+      <button onClick={handleFolderDeleteOnClick}>Delete {folderName}</button>
+    </div>
   );
 }
 

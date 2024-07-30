@@ -6,6 +6,7 @@ import FormResponse from "./FormResponse";
 import FormName from "./FormName";
 import { addForm, updateForm } from "../../api/form";
 import { updateFormId } from "../../actions/forms";
+import { useNavigate } from "react-router-dom";
 
 function FormWorkspace() {
   const formKey = Number(window.location.pathname.split("/").pop());
@@ -17,6 +18,7 @@ function FormWorkspace() {
   const [formSaveErrorMessage, setFormSaveErrorMessage] = useState("");
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   async function handleSaveOnCLick() {
     if (formData._id) {
@@ -49,6 +51,10 @@ function FormWorkspace() {
     console.log(`form updated successfully, ${JSON.stringify(data)}`);
   }
 
+  function handleCancelOnClick() {
+    navigate("/formDashboard");
+  }
+
   return (
     <div>
       <header>
@@ -58,6 +64,7 @@ function FormWorkspace() {
         <button onClick={() => setFormView("response")}>Response</button>
         <button>Share</button>
         <button onClick={handleSaveOnCLick}>Save</button>
+        <button onClick={handleCancelOnClick}>Cancel</button>
         {formSaveErrorMessage && <div>{formSaveErrorMessage}</div>}
       </header>
       <main>

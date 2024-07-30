@@ -6,6 +6,7 @@ const DELETE_FLOW_ELEMENT = "DELETE_FLOW_ELEMENT";
 const UPDATE_FORM_THEME = "UPDATE_FORM_THEME";
 const UPDATE_FORM_NAME = "UPDATE_FORM_NAME";
 const UPDATE_FORM_ID = "UPDATE_FORM_ID";
+const REMOVE_FORM = "REMOVE_FORM";
 
 function addNewForm(formId, selectedFolderId) {
   const form = {
@@ -97,6 +98,15 @@ function updateFormId(formKeyInState, formId) {
   };
 }
 
+function removeForm(formKey) {
+  return {
+    type: REMOVE_FORM,
+    payload: {
+      formKey,
+    },
+  };
+}
+
 export {
   ADD_FLOW_ELEMENT,
   ADD_EXISTING_FORMS,
@@ -106,6 +116,7 @@ export {
   UPDATE_FORM_NAME,
   ADD_NEW_FORM,
   UPDATE_FORM_ID,
+  REMOVE_FORM,
   addFlowElement,
   updateFlowElementValue,
   deleteFlowElement,
@@ -114,4 +125,5 @@ export {
   addNewForm,
   addExisitngForms,
   updateFormId,
+  removeForm,
 };

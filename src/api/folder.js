@@ -38,4 +38,22 @@ async function addFolder(name) {
   }
 }
 
-export { getFolders, addFolder };
+async function deleteFolder(folderId) {
+  try {
+    const response = await axios.delete(
+      `${baseURL}/folder/delete/${folderId}`,
+      getAuthConfig()
+    );
+    console.debug(response);
+    return successResponse(response);
+  } catch (error) {
+    console.error(error);
+    if (error.response) {
+      return errorResponse(error.response);
+    }
+
+    throw error;
+  }
+}
+
+export { getFolders, addFolder, deleteFolder };

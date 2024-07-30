@@ -41,7 +41,7 @@ function FormDashboard() {
     for (const key in forms) {
       const form = forms[key];
       if (form.refFolderId === folderId) {
-        formsInsideFolder.push({ key, name: form.name });
+        formsInsideFolder.push({ key, name: form.name, _id: form._id });
       }
     }
 
@@ -58,7 +58,7 @@ function FormDashboard() {
     for (const key in forms) {
       const form = forms[key];
       if (!form.refFolderId) {
-        formsOutsideAllFolder.push({ key, name: form.name });
+        formsOutsideAllFolder.push({ key, name: form.name, _id: form._id });
       }
     }
 
@@ -151,11 +151,19 @@ function FormDashboard() {
         {formDataFetchError && <div>{formDataFetchError}</div>}
         {selectedFolderId &&
           getFormsInsideFolder(selectedFolderId).map((form) => (
-            <FormChip formKeyInSate={form.key} formName={form.name} />
+            <FormChip
+              formKeyInSate={form.key}
+              formName={form.name}
+              formId={form._id}
+            />
           ))}
         {!selectedFolderId &&
           getFormsOutsideAllFolder().map((form) => (
-            <FormChip formKeyInSate={form.key} formName={form.name} />
+            <FormChip
+              formKeyInSate={form.key}
+              formName={form.name}
+              formId={form._id}
+            />
           ))}
       </div>
     </div>

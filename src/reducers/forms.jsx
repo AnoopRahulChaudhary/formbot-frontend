@@ -3,6 +3,7 @@ import {
   ADD_FLOW_ELEMENT,
   ADD_NEW_FORM,
   DELETE_FLOW_ELEMENT,
+  REMOVE_FORM,
   UPDATE_FLOW_ELEMENT_VALUE,
   UPDATE_FORM_ID,
   UPDATE_FORM_NAME,
@@ -82,6 +83,14 @@ const reducer = (state = forms, action) => {
           ...state[action.payload.formKey],
           _id: action.payload.formId,
         },
+      };
+
+    case REMOVE_FORM:
+      const updatedStateAfterFormRemoval = { ...state };
+      delete updatedStateAfterFormRemoval[action.payload.formKey];
+
+      return {
+        ...updatedStateAfterFormRemoval,
       };
 
     default:
